@@ -1,0 +1,32 @@
+#footer {
+    background: black;
+    text-align: center;
+    height: 65px;
+    width: 100%;
+    line-height: 30px;
+    font-size: 0.8em;
+    color: white;
+}
+
+.mat-raised-button, .mat-stroked-button {
+    top: 20px;
+}
+
+.mat-stroked-button {
+    color: #D9B310;
+    text-transform: uppercase;
+}
+
+
+.rotate {
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+mat-icon {
+    color: white;
+    margin: 0 10px;
+}

@@ -1,0 +1,38 @@
+#header {
+    background: black;
+    transform: all 0.4s ease-in;
+    height: 47px;
+    width: 100%;
+}
+
+h1 {
+    font-size: 1em;
+    text-align: center;
+    margin: 0px;
+    padding: 14px;
+    transform: all 0.4s ease-in;
+    color: white;
+}
+
+span {
+    opacity: 0;
+    display: none;
+    transition: .2s opacity ease-in;
+}
+
+@media screen and (min-width: 43.75em){
+    #header {
+        height: 55px;
+    }
+    h1 {
+        font-size: 1.4em;
+    }
+}
+@media screen and (min-width: 60em){
+    #header {
+        height: 70px;
+    }
+    h1 {
+        font-size: 2em;
+    }
+}
