@@ -1,1 +1,35 @@
-HOME PAGE
+<div style="text-align: center;">
+    <mat-form-field style="width: 65%; min-width: 310px;">
+        <textarea matInput #textContent placeholder="Place your content here to be counted!" style="height: 300px;"></textarea>
+    </mat-form-field>
+    <br/>
+    <button mat-fab color="primary" (click)="countContent()">Count!</button>
+</div>
+
+<div>
+    <table style="width: 100%;"><tr style="vertical-align: top;"><td>
+        <table>
+            <tr><th colspan="2">1 Gram</th></tr>
+            <tr *ngFor="let g of oneGramList"><td>{{g[0]}}</td><td>{{g[1]}}</td></tr></table>
+    </td><td>
+        <table>
+            <tr><th colspan="2">No Commons</th></tr>
+            <tr *ngFor="let g of oneRGramList"><td>{{g[0]}}</td><td>{{g[1]}}</td></tr></table>
+    </td><td>
+        <table>
+            <tr><th colspan="2">2 Gram</th></tr>
+            <tr *ngFor="let g of twoGramList"><td>{{g[0]}}</td><td>{{g[1]}}</td></tr></table>
+    </td><td>
+        <table>
+            <tr><th colspan="2">No Commons</th></tr>
+            <tr *ngFor="let g of twoRGramList"><td>{{g[0]}}</td><td>{{g[1]}}</td></tr></table>
+    </td><td>
+        <table>
+            <tr><th colspan="2">3 Gram</th></tr>
+            <tr *ngFor="let g of threeGramList"><td>{{g[0]}}</td><td>{{g[1]}}</td></tr></table>
+    </td><td>
+        <table>
+            <tr><th colspan="2">No Commons</th></tr>
+            <tr *ngFor="let g of threeRGramList"><td>{{g[0]}}</td><td>{{g[1]}}</td></tr></table>
+    </td></tr></table>
+</div>
