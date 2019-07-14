@@ -6,30 +6,24 @@
     <button mat-fab color="primary" (click)="countContent()">Count!</button>
 </div>
 
+<style>
+    td {
+        padding: 6px;
+    }
+</style>
+
 <div>
-    <table style="width: 100%;"><tr style="vertical-align: top;"><td>
+    <table style="margin: auto;"><tr style="vertical-align: top;"><td>
         <table>
             <tr><th colspan="2">1 Gram</th></tr>
             <tr *ngFor="let g of oneGramList"><td>{{g[0]}}</td><td>{{g[1]}}</td></tr></table>
-    </td><td>
-        <table>
-            <tr><th colspan="2">No Commons</th></tr>
-            <tr *ngFor="let g of oneRGramList"><td>{{g[0]}}</td><td>{{g[1]}}</td></tr></table>
     </td><td>
         <table>
             <tr><th colspan="2">2 Gram</th></tr>
             <tr *ngFor="let g of twoGramList"><td>{{g[0]}}</td><td>{{g[1]}}</td></tr></table>
     </td><td>
         <table>
-            <tr><th colspan="2">No Commons</th></tr>
-            <tr *ngFor="let g of twoRGramList"><td>{{g[0]}}</td><td>{{g[1]}}</td></tr></table>
-    </td><td>
-        <table>
             <tr><th colspan="2">3 Gram</th></tr>
             <tr *ngFor="let g of threeGramList"><td>{{g[0]}}</td><td>{{g[1]}}</td></tr></table>
-    </td><td>
-        <table>
-            <tr><th colspan="2">No Commons</th></tr>
-            <tr *ngFor="let g of threeRGramList"><td>{{g[0]}}</td><td>{{g[1]}}</td></tr></table>
     </td></tr></table>
 </div>

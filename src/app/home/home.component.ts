@@ -497,7 +497,8 @@ df = pd.read_csv('http://bit.ly/ByPyWC19')</code></pre>
     }
 
     removeTags(content: string): string {
-        const rxCodeTag = /<code>[\s\S]*?<\/code>/gim;
+        const rxCodeTag = /<code.*?>[\s\S]*?<\/code>/gim;
+        const rxFormTag = /<form.*?>[\s\S]*?<\/form>/gim;
         const rxImageTag = /<img [\s\S]*?\/?>/gim;
         const rxATag = /<a [\s\S]*?>/gim;
         const rxBrTag = /<br\/?>/gim;
@@ -511,6 +512,7 @@ df = pd.read_csv('http://bit.ly/ByPyWC19')</code></pre>
         const rxURL = /www\.\S+\.com/gim;
 
         return content.replace(rxCodeTag, '')
+            .replace(rxFormTag, '')
             .replace(rxImageTag, '')
             .replace(rxATag, '')
             .replace(rxBrTag, '')
@@ -540,10 +542,10 @@ df = pd.read_csv('http://bit.ly/ByPyWC19')</code></pre>
     }
 
     ngramCount(sentences: string[]) {
-        const oneGram = {},
-            twoGram = {},
-            threeGram = {};
-        for(let i = 0, l = sentences.length; i < l; i++) {
+        const oneGram = {};
+        const twoGram = {};
+        const threeGram = {};
+        for (let i = 0, l = sentences.length; i < l; i++) {
             const words = sentences[i].split(' ');
             const trailingWords = [];
             for (let iw = 0, lw = words.length; iw < lw; iw++) {
@@ -551,12 +553,12 @@ df = pd.read_csv('http://bit.ly/ByPyWC19')</code></pre>
                 trailingWords.push(word);
                 oneGram[trailingWords[iw]] = (oneGram[trailingWords[iw]] | 0) + 1;
                 if (iw > 0) {
-                    const twoKey = trailingWords[iw-1] + ' ' + trailingWords[iw]
+                    const twoKey = trailingWords[iw - 1] + ' ' + trailingWords[iw];
                     twoGram[twoKey] = (twoGram[twoKey] | 0) + 1;
                 }
 
                 if (iw > 1) {
-                    const threeKey = trailingWords[iw-2] + ' ' + trailingWords[iw-1] + ' ' + trailingWords[iw]
+                    const threeKey = trailingWords[iw - 2] + ' ' + trailingWords[iw - 1] + ' ' + trailingWords[iw];
                     threeGram[threeKey] = (threeGram[threeKey] | 0) + 1;
                 }
             }
@@ -566,14 +568,8 @@ df = pd.read_csv('http://bit.ly/ByPyWC19')</code></pre>
     }
 
     sortDictionary(dict) {
-        var items = Object.keys(dict).map(function(key) {
-            return [key, dict[key]];
-        });
-
-        items.sort(function(first, second) {
-            return second[1] - first[1];
-        });
-
+        const items = Object.keys(dict).map(key => [key, dict[key]]);
+        items.sort((first, second) => second[1] - first[1]);
         return items;
     }
 
@@ -583,16 +579,16 @@ df = pd.read_csv('http://bit.ly/ByPyWC19')</code></pre>
         this.textContent.nativeElement.value = noTagContent;
         const sentences = this.splitContent(noTagContent);
         let oneGram, twoGram, threeGram;
+        /*
         [oneGram, twoGram, threeGram] = this.ngramCount(sentences);
-
-        this.oneGramList = this.sortDictionary(oneGram).slice(0, 25).filter(g => g[1] > 1);
-        this.twoGramList = this.sortDictionary(twoGram).slice(0, 25).filter(g => g[1] > 1);
-        this.threeGramList = this.sortDictionary(threeGram).slice(0, 25).filter(g => g[1] > 1);
-
+        this.oneGramList = this.sortDictionary(oneGram).slice(0, 25).filter(g => g[1] > 2);
+        this.twoGramList = this.sortDictionary(twoGram).slice(0, 25).filter(g => g[1] > 2);
+        this.threeGramList = this.sortDictionary(threeGram).slice(0, 25).filter(g => g[1] > 2);
+        */
         [oneGram, twoGram, threeGram] = this.ngramCount(this.splitContent(this.removeTags(this.removeMostCommon(content))));
-        this.oneRGramList = this.sortDictionary(oneGram).slice(0, 25).filter(g => g[1] > 1);
-        this.twoRGramList = this.sortDictionary(twoGram).slice(0, 25).filter(g => g[1] > 1);
-        this.threeRGramList = this.sortDictionary(threeGram).slice(0, 25).filter(g => g[1] > 1);
+        this.oneGramList = this.sortDictionary(oneGram).slice(0, 20).filter(g => g[1] > 2);
+        this.twoGramList = this.sortDictionary(twoGram).slice(0, 20).filter(g => g[1] > 2);
+        this.threeGramList = this.sortDictionary(threeGram).slice(0, 20).filter(g => g[1] > 2);
 
     }
 }
