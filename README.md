@@ -7,3 +7,8 @@ Currently, the statistics will remove the [100 most common words in English](htt
 ## Material Card Content
 `(Array.from(document.getElementsByTagName('mat-card-content')).map(m => m.innerHTML)).join(' ')`
 
+## Removed Elements
+- Form/Code contents
+- Tags: a, br, b, hr, p, i, ul, li, h3, div, blockquote
+- Remove duplicate spaces and periods
+- Remove filenames and website addresses
